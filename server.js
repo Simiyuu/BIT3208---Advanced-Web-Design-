@@ -163,3 +163,15 @@ initDB().then(() => {
   console.error('❌ Failed to connect to MySQL:', err.message);
   process.exit(1);
 });
+
+app.put('/api/notes/:id', requireAuth, async (req, res) => {
+  const { title, content } = req.body;
+  if (!title || !content)
+    return res.status(400).json({ error: 'Title and content required' });
+
+  await db.execute(
+    'UPDATE notes SET title = ?, content = ? WHERE id = ? AND user_id = ?',
+    [title, content, req.params.id, req.userId]
+  );
+  res.json({ message: 'Note updated!' });
+});

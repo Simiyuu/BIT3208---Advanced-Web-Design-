@@ -189,3 +189,83 @@ function escHtml(str) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
 }
+
+function checkStrength(password) {
+  const fill  = document.getElementById('strengthFill');
+  const label = document.getElementById('strengthLabel');
+
+  let score = 0;
+  if (password.length >= 8)               score++;
+  if (/[A-Z]/.test(password))             score++;
+  if (/[0-9]/.test(password))             score++;
+  if (/[^A-Za-z0-9]/.test(password))      score++;
+
+  if (password.length === 0) {
+    fill.style.width      = '0%';
+    fill.style.background = 'transparent';
+    label.textContent     = '';
+    label.style.color     = '';
+    return;
+  }
+
+  if (score <= 1) {
+    fill.style.width      = '33%';
+    fill.style.background = '#ff5f5f';
+    label.textContent     = 'Weak';
+    label.style.color     = '#ff5f5f';
+  } else if (score === 2 || score === 3) {
+    fill.style.width      = '66%';
+    fill.style.background = '#f0c040';
+    label.textContent     = 'Medium';
+    label.style.color     = '#f0c040';
+  } else {
+    fill.style.width      = '100%';
+    fill.style.background = '#c8f060';
+    label.textContent     = 'Strong';
+    label.style.color     = '#c8f060';
+  }
+}
+
+function editNote() {
+  if (!selectedNoteId) return;
+  const note = notes.find(n => n.id === selectedNoteId);
+  if (!note) return;
+
+  document.getElementById('noteTitle').value   = note.title;
+  document.getElementById('noteContent').value = note.content;
+
+  const btn = document.querySelector('.form-row .btn-primary');
+  btn.textContent  = 'Update Note';
+  btn.onclick      = () => updateNote(selectedNoteId);
+
+  document.getElementById('noteTitle').focus();
+}
+
+async function updateNote(id) {
+  const title   = document.getElementById('noteTitle').value.trim();
+  const content = document.getElementById('noteContent').value.trim();
+  const msg     = document.getElementById('noteMsg');
+
+  if (!title || !content) {
+    msg.style.color = 'var(--danger)';
+    msg.textContent = 'Fill in title and content';
+    return;
+  }
+
+  await fetch(`${API}/notes/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', 'Authorization': token },
+    body: JSON.stringify({ title, content })
+  });
+
+  const btn = document.querySelector('.form-row .btn-primary');
+  btn.textContent = 'Save Note';
+  btn.onclick     = createNote;
+
+  document.getElementById('noteTitle').value   = '';
+  document.getElementById('noteContent').value = '';
+  msg.style.color = 'var(--accent)';
+  msg.textContent = '✓ Note updated!';
+  setTimeout(() => msg.textContent = '', 3000);
+  loadNotes();
+}

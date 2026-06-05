@@ -51,7 +51,11 @@
       </div>
       <div class="form-group">
         <label>Password</label>
-        <input type="password" id="regPass" placeholder="••••••••" />
+        <input type="password" id="regPass" placeholder="••••••••" oninput="checkStrength(this.value)" />
+        <div id="strengthBar">
+           <div id="strengthFill"></div>
+        </div>
+        <div id="strengthLabel"></div>
       </div>
       <div style="margin-top:1.5rem">
         <button class="btn-primary" style="width:100%" onclick="register()">Create Account →</button>
@@ -99,6 +103,7 @@
             <h3 id="detailTitle"></h3>
             <div class="note-detail-date" id="detailDate"></div>
           </div>
+          <button class="btn-ghost" onclick="editNote()">✎ edit</button>
           <button class="btn-danger" onclick="deleteNote()">✕ delete</button>
         </div>
         <div class="note-detail-body" id="detailBody"></div>
