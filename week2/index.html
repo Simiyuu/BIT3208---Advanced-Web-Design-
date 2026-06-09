@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NoteKeeper</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <div class="logo">Note<span>Keeper</span></div>
+  <div id="userInfo" class="hidden">
+    logged in as <strong id="usernameDisplay"></strong>
+    <button class="btn-ghost" onclick="logout()">logout</button>
+  </div>
+</header>
+
+<div id="authScreen">
+  <div class="auth-box">
+    <h2>Welcome back.</h2>
+    <p>Your notes, stored securely in MySQL.</p>
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('login')">Login</button>
+      <button class="tab" onclick="switchTab('register')">Register</button>
+    </div>
+
+    <div id="loginForm">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="loginUser" placeholder="your username" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="loginPass" placeholder="••••••••" />
+      </div>
+      <div style="margin-top:1.5rem">
+        <button class="btn-primary" style="width:100%" onclick="login()">Login →</button>
+      </div>
+      <div id="loginMsg" class="error-msg"></div>
+    </div>
+
+    <div id="registerForm" class="hidden">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="regUser" placeholder="choose a username" />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="regEmail" placeholder="you@example.com" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="regPass" placeholder="••••••••" oninput="checkStrength(this.value)" />
+        <div id="strengthBar">
+           <div id="strengthFill"></div>
+        </div>
+        <div id="strengthLabel"></div>
+      </div>
+      <div style="margin-top:1.5rem">
+        <button class="btn-primary" style="width:100%" onclick="register()">Create Account →</button>
+      </div>
+      <div id="registerMsg" class="error-msg"></div>
+    </div>
+  </div>
+</div>
+
+<div id="appScreen">
+  <div class="app-body">
+
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h3>My Notes</h3>
+        <span id="noteCount" style="font-size:0.72rem;color:var(--muted)">0</span>
+      </div>
+      <div class="notes-list" id="notesList">
+        <div class="empty-notes">No notes yet.<br/>Create your first one →</div>
+      </div>
+    </div>
+
+    <div class="main-panel">
+      <div class="panel-title">New Note</div>
+
+      <div class="new-note-form">
+        <h4>Create Note</h4>
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" id="noteTitle" placeholder="Note title..." />
+        </div>
+        <div class="form-group">
+          <label>Content</label>
+          <textarea id="noteContent" placeholder="Write your note here..."></textarea>
+        </div>
+        <div class="form-row">
+          <button class="btn-primary" onclick="createNote()">Save Note</button>
+          <div id="noteMsg" class="success-msg"></div>
+        </div>
+      </div>
+
+      <div id="noteDetail" class="note-detail hidden">
+        <div class="note-detail-header">
+          <div>
+            <h3 id="detailTitle"></h3>
+            <div class="note-detail-date" id="detailDate"></div>
+          </div>
+          <button class="btn-ghost" onclick="editNote()">✎ edit</button>
+          <button class="btn-danger" onclick="deleteNote()">✕ delete</button>
+        </div>
+        <div class="note-detail-body" id="detailBody"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
