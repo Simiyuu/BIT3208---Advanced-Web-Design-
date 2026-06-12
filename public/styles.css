@@ -275,3 +275,15 @@ textarea { resize: vertical; min-height: 100px; }
   .auth-box h2 { font-size: 1.1rem; }
   header { padding: 0.8rem; }
 }
+
+#noteCount {
+  background: var(--accent);
+  color: #0e0e0e;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  min-width: 1.4rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
