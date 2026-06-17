@@ -287,3 +287,38 @@ textarea { resize: vertical; min-height: 100px; }
   text-align: center;
   transition: all 0.3s ease;
 }
+
+select {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  padding: 0.7rem 1rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+select:focus { border-color: var(--accent); }
+
+.sidebar-search {
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-search input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  padding: 0.5rem 0.8rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.sidebar-search input:focus {
+  border-color: var(--accent);
+}
