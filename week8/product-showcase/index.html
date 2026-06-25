@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DRIP — Fashion Showcase</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">DRIP</div>
+    <ul class="nav-links">
+      <li><a href="#products">Shop</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-icons">
+      <i class="fas fa-search"></i>
+      <i class="fas fa-shopping-bag"></i>
+    </div>
+    <button class="hamburger" onclick="toggleNav()">
+      <i class="fas fa-bars"></i>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#products" onclick="toggleNav()">Shop</a>
+    <a href="#about" onclick="toggleNav()">About</a>
+    <a href="#contact" onclick="toggleNav()">Contact</a>
+  </div>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-eyebrow">New Collection — 2026</p>
+        <h1>WEAR<br/>YOUR<br/><span>BOLD</span></h1>
+        <p class="hero-sub">Premium streetwear and accessories crafted for those who move with intention. Limited drops, unlimited style.</p>
+        <a href="#products" class="btn-hero">Shop Now <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&q=80" alt="Fashion Hero" />
+          <div class="hero-card-badge">New In</div>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-num">200+</span>
+          <span class="stat-lbl">Products</span>
+        </div>
+        <div class="hero-stat hero-stat-2">
+          <span class="stat-num">4.9★</span>
+          <span class="stat-lbl">Rating</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="filter-bar">
+    <div class="filter-inner">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active" onclick="filterProducts('all', this)">All</button>
+      <button class="filter-btn" onclick="filterProducts('clothing', this)">Clothing</button>
+      <button class="filter-btn" onclick="filterProducts('shoes', this)">Shoes</button>
+      <button class="filter-btn" onclick="filterProducts('accessories', this)">Accessories</button>
+    </div>
+  </div>
+
+  <section id="products" class="products">
+    <div class="container">
+      <div class="section-top">
+        <div>
+          <p class="section-eyebrow">Our Collection</p>
+          <h2>Featured Products</h2>
+        </div>
+        <p class="product-count"><span id="count">4</span> items</p>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+
+        <div class="product-card" data-category="clothing">
+          <div class="product-image-wrap">
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80" alt="Classic White Tee" class="product-img" />
+            <div class="product-overlay">
+              <button class="btn-add"><i class="fas fa-shopping-bag"></i> Add to Bag</button>
+            </div>
+            <span class="product-badge">Bestseller</span>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Clothing</span>
+            <h3 class="product-name">Classic Oversized Tee</h3>
+            <p class="product-desc">Premium 100% cotton oversized fit. Available in 8 colorways. The wardrobe essential you never knew you needed.</p>
+            <div class="product-footer">
+              <span class="product-price">KSh 2,500</span>
+              <div class="product-rating">
+                <i class="fas fa-star"></i>
+                <span>4.9 (128)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="shoes">
+          <div class="product-image-wrap">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80" alt="Runner Sneakers" class="product-img" />
+            <div class="product-overlay">
+              <button class="btn-add"><i class="fas fa-shopping-bag"></i> Add to Bag</button>
+            </div>
+            <span class="product-badge new">New</span>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Shoes</span>
+            <h3 class="product-name">Urban Runner Sneakers</h3>
+            <p class="product-desc">Lightweight foam sole with breathable mesh upper. Built for the streets, designed for comfort all day long.</p>
+            <div class="product-footer">
+              <span class="product-price">KSh 8,999</span>
+              <div class="product-rating">
+                <i class="fas fa-star"></i>
+                <span>4.8 (94)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="accessories">
+          <div class="product-image-wrap">
+            <img src="https://images.pexels.com/photos/1124465/pexels-photo-1124465.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Cap" class="product-img" />
+            <div class="product-overlay">
+              <button class="btn-add"><i class="fas fa-shopping-bag"></i> Add to Bag</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Accessories</span>
+            <h3 class="product-name">Structured Dad Cap</h3>
+            <p class="product-desc">Six-panel structured cap with embroidered logo. Adjustable strap fits all head sizes. UV protective.</p>
+            <div class="product-footer">
+              <span class="product-price">KSh 1,800</span>
+              <div class="product-rating">
+                <i class="fas fa-star"></i>
+                <span>4.7 (67)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="clothing">
+          <div class="product-image-wrap">
+            <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80" alt="Cargo Pants" class="product-img" />
+            <div class="product-overlay">
+              <button class="btn-add"><i class="fas fa-shopping-bag"></i> Add to Bag</button>
+            </div>
+            <span class="product-badge sale">Sale</span>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Clothing</span>
+            <h3 class="product-name">Wide Leg Cargo Pants</h3>
+            <p class="product-desc">Six-pocket utility cargo with relaxed wide leg fit. Durable ripstop fabric in olive, black and sand.</p>
+            <div class="product-footer">
+              <div>
+                <span class="product-price">KSh 4,500</span>
+                <span class="product-old-price">KSh 6,000</span>
+              </div>
+              <div class="product-rating">
+                <i class="fas fa-star"></i>
+                <span>4.9 (203)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about-strip">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-item">
+          <i class="fas fa-truck"></i>
+          <h4>Free Delivery</h4>
+          <p>On all orders over KSh 5,000 nationwide</p>
+        </div>
+        <div class="about-item">
+          <i class="fas fa-undo"></i>
+          <h4>Easy Returns</h4>
+          <p>30-day hassle-free return policy</p>
+        </div>
+        <div class="about-item">
+          <i class="fas fa-shield-alt"></i>
+          <h4>Secure Payment</h4>
+          <p>M-Pesa, Visa and Mastercard accepted</p>
+        </div>
+        <div class="about-item">
+          <i class="fas fa-headset"></i>
+          <h4>24/7 Support</h4>
+          <p>Always here to help via WhatsApp</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <p class="section-eyebrow">Get In Touch</p>
+      <h2>Visit Our Store</h2>
+      <div class="contact-row">
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Nairobi CBD, Kenya</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span>+254 700 000 000</span>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-instagram"></i>
+          <span>@dripfashionke</span>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-whatsapp"></i>
+          <span>WhatsApp Us</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">DRIP</span>
+      <p>© 2026 DRIP Fashion. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    function filterProducts(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.product-card');
+      let count = 0;
+
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'flex';
+          count++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('count').textContent = count;
+    }
+  </script>
+</body>
+</html>

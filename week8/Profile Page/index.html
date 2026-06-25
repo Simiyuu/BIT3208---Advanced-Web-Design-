@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chandler Matere Simiyu — Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">CMS</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleNav()">
+      <i class="fas fa-bars"></i>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="toggleNav()">About</a>
+    <a href="#skills" onclick="toggleNav()">Skills</a>
+    <a href="#projects" onclick="toggleNav()">Projects</a>
+    <a href="#contact" onclick="toggleNav()">Contact</a>
+  </div>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="eyebrow">Computer Science Student</p>
+        <h1>Chandler<br/><em>Matere Simiyu</em></h1>
+        <p class="hero-bio">Building full-stack web applications with Node.js, MySQL and modern frontend technologies. Passionate about clean code, real-world problem solving and turning ideas into working products.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Get in Touch</a>
+          <a href="https://github.com/Simiyuu" target="_blank" class="btn-outline">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+      <div class="hero-image-wrap">
+        <div class="image-ring"></div>
+        <img src="mee.jpeg" alt="Chandler Matere Simiyu" class="profile-img" />
+        <div class="image-badge">
+          <i class="fas fa-code"></i>
+          <span>Full Stack</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
+      <div class="section-label">01 — About</div>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>Who I Am</h2>
+          <p>I am a Computer Science student with a strong interest in web development and software engineering. I enjoy building systems that solve real problems — from student portals to full-featured authentication systems with 2FA and email verification.</p>
+          <p>My academic work is backed by practical project experience using the complete web stack: from designing databases and building REST APIs to crafting responsive frontend interfaces.</p>
+          <div class="about-stats">
+            <div class="stat">
+              <span class="stat-number">7+</span>
+              <span class="stat-label">Weeks of Projects</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">3</span>
+              <span class="stat-label">Tech Stacks</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">BIT3208</span>
+              <span class="stat-label">Advanced Web Dev</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-details">
+          <h3>Details</h3>
+          <ul class="details-list">
+            <li>
+              <i class="fas fa-user"></i>
+              <div>
+                <span class="detail-label">Full Name</span>
+                <span class="detail-value">Chandler Matere Simiyu</span>
+              </div>
+            </li>
+            <li>
+              <i class="fas fa-graduation-cap"></i>
+              <div>
+                <span class="detail-label">Course</span>
+                <span class="detail-value">Computer Science / IT</span>
+              </div>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <div>
+                <span class="detail-label">Email</span>
+                <span class="detail-value">chandlermxtere@gmail.com</span>
+              </div>
+            </li>
+            <li>
+              <i class="fas fa-phone"></i>
+              <div>
+                <span class="detail-label">Phone</span>
+                <span class="detail-value">+254 704 084 815</span>
+              </div>
+            </li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <span class="detail-label">Location</span>
+                <span class="detail-value">Kenya</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <div class="container">
+      <div class="section-label">02 — Skills</div>
+      <h2>What I Work With</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fab fa-html5"></i></div>
+          <h4>HTML & CSS</h4>
+          <p>Semantic markup, Flexbox, CSS Grid, responsive design and media queries</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fab fa-js"></i></div>
+          <h4>JavaScript</h4>
+          <p>DOM manipulation, fetch API, async/await, form validation and dynamic UI</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fab fa-node-js"></i></div>
+          <h4>Node.js & Express</h4>
+          <p>REST API design, middleware, authentication, session management and routing</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-database"></i></div>
+          <h4>MySQL</h4>
+          <p>Database design, CRUD operations, foreign keys, joins and phpMyAdmin</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
+          <h4>Authentication</h4>
+          <p>JWT-style tokens, email verification, password reset, 2FA with Google Authenticator</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+          <h4>Git & GitHub</h4>
+          <p>Version control, branching, commits, weekly project documentation and repos</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="container">
+      <div class="section-label">03 — Projects</div>
+      <h2>What I've Built</h2>
+      <div class="projects-grid">
+        <div class="project-card featured">
+          <div class="project-tag">Full Stack</div>
+          <h3>NoteKeeper</h3>
+          <p>A full-stack notes management application with user authentication, role-based access, email verification, password reset, two-factor authentication and real-time search. Built with Node.js, Express and MySQL.</p>
+          <div class="project-stack">
+            <span>Node.js</span>
+            <span>Express</span>
+            <span>MySQL</span>
+            <span>HTML/CSS/JS</span>
+            <span>Nodemailer</span>
+            <span>2FA</span>
+          </div>
+          <a href="https://github.com/Simiyuu" target="_blank" class="project-link">
+            View on GitHub <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="project-card">
+          <div class="project-tag">Frontend</div>
+          <h3>Personal Profile Page</h3>
+          <p>A responsive personal portfolio page built with HTML, CSS Flexbox and media queries. Adapts cleanly across mobile, tablet and desktop screen sizes.</p>
+          <div class="project-stack">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>Flexbox</span>
+            <span>Responsive</span>
+          </div>
+          <a href="https://github.com/Simiyuu" target="_blank" class="project-link">
+            View on GitHub <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-label">04 — Contact</div>
+      <h2>Let's Connect</h2>
+      <p class="contact-sub">I'm open to internship opportunities, project collaborations and freelance web development work.</p>
+      <div class="contact-grid">
+        <a href="mailto:chandlermxtere@gmail.com" class="contact-card">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <span class="contact-label">Email</span>
+            <span class="contact-value">chandlermxtere@gmail.com</span>
+          </div>
+        </a>
+        <a href="tel:+254704084815" class="contact-card">
+          <i class="fas fa-phone"></i>
+          <div>
+            <span class="contact-label">Phone</span>
+            <span class="contact-value">+254 704 084 815</span>
+          </div>
+        </a>
+        <a href="https://github.com/Simiyuu" target="_blank" class="contact-card">
+          <i class="fab fa-github"></i>
+          <div>
+            <span class="contact-label">GitHub</span>
+            <span class="contact-value">github.com/Simiyuu</span>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/chandler-matere-a247b7387/" target="_blank" class="contact-card">
+          <i class="fab fa-linkedin"></i>
+          <div>
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">Chandler Matere</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Chandler Matere Simiyu — Computer Science Student</p>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('open');
+    }
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 100) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
