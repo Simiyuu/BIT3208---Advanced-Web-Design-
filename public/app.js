@@ -14,6 +14,12 @@ function showApp() {
   document.getElementById('usernameDisplay').textContent = username;
   document.getElementById('roleDisplay').textContent = localStorage.getItem('role') || 'student';
   loadNotes();
+  if (localStorage.getItem('role') === 'administrator') {
+    loadAdminPanel();
+  }
+  if (localStorage.getItem('role') === 'lecturer') {
+    loadLecturerPanel();
+  }
 }
 
 function showAuth() {
@@ -376,4 +382,84 @@ function checkStrength(password) {
 
 function escHtml(str) {
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+async function loadAdminPanel() {
+  const res = await fetch(`${API}/admin/users`, {
+    headers: { 'Authorization': token }
+  });
+  if (!res.ok) return;
+  const users = await res.json();
+
+  document.getElementById('adminPanel').classList.remove('hidden');
+
+  const rows = users.map(u => `
+    <tr>
+      <td>${escHtml(u.username)}</td>
+      <td>${escHtml(u.email)}</td>
+      <td><span class="role-tag ${u.role}">${u.role}</span></td>
+      <td>${u.is_verified
+        ? '<span class="verified-yes">✓ Verified</span>'
+        : '<span class="verified-no">✗ Unverified</span>'}</td>
+      <td>${new Date(u.created_at).toLocaleDateString()}</td>
+    </tr>
+  `).join('');
+
+  document.getElementById('adminUsersList').innerHTML = `
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Verified</th>
+          <th>Joined</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <p style="font-size:0.75rem;color:var(--muted);margin-top:0.8rem">${users.length} registered user${users.length !== 1 ? 's' : ''} total</p>
+  `;
+}
+
+async function loadLecturerPanel() {
+  const res = await fetch(`${API}/lecturer/notes`, {
+    headers: { 'Authorization': token }
+  });
+  if (!res.ok) return;
+  const allNotes = await res.json();
+
+  document.getElementById('lecturerPanel').classList.remove('hidden');
+
+  if (allNotes.length === 0) {
+    document.getElementById('lecturerNotesList').innerHTML =
+      '<p style="color:var(--muted);font-size:0.82rem">No notes have been created yet.</p>';
+    return;
+  }
+
+  const rows = allNotes.map(n => `
+    <tr>
+      <td>${escHtml(n.username)}</td>
+      <td>${escHtml(n.title)}</td>
+      <td><span class="note-content-preview">${escHtml(n.content)}</span></td>
+      <td><span class="category-tag">${escHtml(n.category)}</span></td>
+      <td>${new Date(n.created_at).toLocaleDateString()}</td>
+    </tr>
+  `).join('');
+
+  document.getElementById('lecturerNotesList').innerHTML = `
+    <table class="lecturer-table">
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Category</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <p style="font-size:0.75rem;color:var(--muted);margin-top:0.8rem">${allNotes.length} note${allNotes.length !== 1 ? 's' : ''} total across all students</p>
+  `;
 }

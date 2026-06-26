@@ -162,7 +162,7 @@ app.post('/api/verify-2fa', async (req, res) => {
     secret: rows[0].two_fa_secret,
     encoding: 'base32',
     token: otp,
-    window: 1
+    window: 2 
   });
   if (!verified) return res.status(401).json({ error: 'Invalid OTP code' });
 
@@ -215,7 +215,12 @@ app.post('/api/reset-password', async (req, res) => {
 });
 
 app.post('/api/setup-2fa', requireAuth, async (req, res) => {
-  const [rows] = await db.execute('SELECT username FROM users WHERE id = ?', [req.userId]);
+  const [rows] = await db.execute('SELECT username, two_fa_enabled FROM users WHERE id = ?', [req.userId]);
+  
+  if (rows[0].two_fa_enabled) {
+    return res.status(400).json({ error: '2FA is already enabled for this account.' });
+  }
+
   const secret = speakeasy.generateSecret({ name: `NoteKeeper (${rows[0].username})` });
   await db.execute('UPDATE users SET two_fa_secret = ? WHERE id = ?', [secret.base32, req.userId]);
   const qrCode = await QRCode.toDataURL(secret.otpauth_url);
@@ -229,7 +234,7 @@ app.post('/api/enable-2fa', requireAuth, async (req, res) => {
     secret: rows[0].two_fa_secret,
     encoding: 'base32',
     token: otp,
-    window: 1
+    window: 2
   });
   if (!verified) return res.status(400).json({ error: 'Invalid OTP. Try again.' });
   await db.execute('UPDATE users SET two_fa_enabled = 1 WHERE id = ?', [req.userId]);
@@ -254,6 +259,42 @@ app.put('/api/profile', requireAuth, async (req, res) => {
   }
   res.json({ message: 'Profile updated successfully!' });
 });
+
+app.get('/api/lecturer/notes', requireAuth, async (req, res) => {
+  const [role] = await db.execute(
+    'SELECT role FROM users WHERE id = ?', [req.userId]
+  );
+  if (role[0].role !== 'lecturer')
+    return res.status(403).json({ error: 'Lecturer access only' });
+
+  const [rows] = await db.execute(`
+    SELECT notes.id, notes.title, notes.content, notes.category, 
+           notes.created_at, users.username
+    FROM notes
+    JOIN users ON notes.user_id = users.id
+    ORDER BY notes.created_at DESC
+  `);
+  res.json(rows);
+});
+
+app.get('/api/admin/users', requireAuth, async (req, res) => {
+  const [userRows] = await db.execute(
+    'SELECT id FROM users WHERE id = ?', [req.userId]
+  );
+  if (userRows.length === 0) return res.status(403).json({ error: 'Access denied' });
+
+  const [role] = await db.execute(
+    'SELECT role FROM users WHERE id = ?', [req.userId]
+  );
+  if (role[0].role !== 'administrator')
+    return res.status(403).json({ error: 'Admin access only' });
+
+  const [rows] = await db.execute(
+    'SELECT username, email, role, is_verified, created_at FROM users ORDER BY created_at DESC'
+  );
+  res.json(rows);
+});
+
 
 app.get('/api/notes', requireAuth, async (req, res) => {
   const [rows] = await db.execute(

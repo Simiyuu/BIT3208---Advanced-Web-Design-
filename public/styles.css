@@ -317,3 +317,81 @@ select:focus { border-color: var(--accent); }
   .auth-box h2 { font-size: 1.1rem; }
   header { padding: 0.8rem; }
 }
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  margin-top: 0.5rem;
+}
+.admin-table th {
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  background: var(--surface2);
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.admin-table td {
+  padding: 0.7rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+.admin-table tr:last-child td { border-bottom: none; }
+.role-tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.role-tag.administrator { background: #7c3aed; color: white; }
+.role-tag.lecturer { background: #0891b2; color: white; }
+.role-tag.student { background: var(--surface2); color: var(--muted); }
+.verified-yes { color: var(--accent); font-size: 0.8rem; }
+.verified-no { color: var(--danger); font-size: 0.8rem; }
+
+.lecturer-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  margin-top: 0.5rem;
+}
+.lecturer-table th {
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  background: var(--surface2);
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.lecturer-table td {
+  padding: 0.7rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+.lecturer-table tr:last-child td { border-bottom: none; }
+.note-content-preview {
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+.category-tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--surface2);
+  color: var(--accent);
+}
