@@ -14,11 +14,18 @@ function showApp() {
   document.getElementById('usernameDisplay').textContent = username;
   document.getElementById('roleDisplay').textContent = localStorage.getItem('role') || 'student';
   loadNotes();
-  if (localStorage.getItem('role') === 'administrator') {
+  const role = localStorage.getItem('role');
+
+  if (role === 'administrator') {
     loadAdminPanel();
+  } else {
+    document.getElementById('adminPanel').classList.add('hidden');
   }
-  if (localStorage.getItem('role') === 'lecturer') {
+
+  if (role === 'lecturer') {
     loadLecturerPanel();
+  } else {
+    document.getElementById('lecturerPanel').classList.add('hidden');
   }
 }
 
